@@ -14,6 +14,8 @@ presti$Pesticide <- toupper(presti$Pesticide)
 
 full_list <- full_join(strawb_sub,presti,by=c("Chemicaltype"="Pesticide"))
 
+full_list <- full_list[!(is.na(full_list$Year) | full_list$Year=="NA"), ]
+
 
 
 
