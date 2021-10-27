@@ -10,6 +10,10 @@ presti <- presti[rowSums(is.na(presti[,2:6])) != 5, ]
 presti$Pesticide <- toupper(presti$Pesticide) 
 
 
+#Combine two dataset. There is some missing Chemicatype for presti. 
+
+full_list <- full_join(strawb_sub,presti,by=c("Chemicaltype"="Pesticide"))
+
 
 
 
