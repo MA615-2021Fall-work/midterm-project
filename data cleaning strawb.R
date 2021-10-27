@@ -5,9 +5,6 @@ library(magrittr)
 presti <- read.csv("Pesticides.csv",header = T, na.strings = c("", "NA"))
 strawb <- read.csv("Strawberries.csv")
 
-#Remove all the NAs in the first column
-presti <- presti[rowSums(is.na(presti)) != ncol(presti),]
-
 #Split the Domain.Category column for the Dataset: strawb:
 #Create a subset containing Year, State, Domain and Domian.Category:
 strawb_sub <- subset(strawb, select =c(Year,Data.Item, State,Domain,Domain.Category, Value))
@@ -34,3 +31,14 @@ strawb_sub <- strawb_sub %<>% separate(col = Domain,
 
 
 strawb_sub$Domain.Category <- gsub("CHEMICAL, INSECTICIDE: ", "", strawb_sub$Domain.Category)
+
+
+strawb_sub$Domain.Category <- gsub("[()]", "", strawb_sub$Domain.Category)
+
+strawb_sub <- strawb_sub %<>% separate(col = Domain.Category,
+                                       into = c("Chemicaltype", "Code"),
+                                       sep = "=",
+                                       fill = "right")
+
+
+strawb_sub <- strawb_sub[complete.cases(strawb_sub$Code),]
