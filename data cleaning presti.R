@@ -8,8 +8,9 @@ presti_chemical_sub <- presti
 #Remove all the rows that full of NAs
 presti <- presti[rowSums(is.na(presti[,2:6])) != 5, ]
 
+#Capitalize all the characters in the column of Pesticide
 presti$Pesticide <- toupper(presti$Pesticide)
-
+presti_chemical_sub$Pesticide <- toupper(presti_chemical_sub$Pesticide)
 
 #Combine two dataset. There is some missing Chemicatype for presti. 
 
