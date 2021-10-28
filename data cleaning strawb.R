@@ -18,6 +18,7 @@ strawb_sub <- strawb_sub %<>% separate(col=Data.Item,
                      fill = "right")
 
 
+
 strawb_sub$units <- paste(strawb_sub$discription, strawb_sub$units)
 
 
@@ -35,14 +36,16 @@ strawb_sub$Domain.Category <- gsub("CHEMICAL, INSECTICIDE: ", "", strawb_sub$Dom
 
 strawb_sub$Domain.Category <- gsub("[()]", "", strawb_sub$Domain.Category)
 
+#Separate Domain.Category into two columns: Chemicaltype and Code
 strawb_sub <- strawb_sub %<>% separate(col = Domain.Category,
                                        into = c("Chemicaltype", "Code"),
                                        sep = "=",
                                        fill = "right")
 
-
+#Remove rows contain only NAs
 strawb_sub <- strawb_sub[complete.cases(strawb_sub$Code),]
 
+#Remove the space in Chemicaltype in order to match with Pesticide from presti
 for (i in 1:length(strawb_sub$Year)) {
   strawb_sub$Chemicaltype[i] <- trimws(strawb_sub$Chemicaltype[i])
 }

@@ -1,9 +1,10 @@
 source("data cleaning strawb.R")
-
+source("dataclean for whole df.R")
 
 #Remove all the NAs in the first column
 presti <- presti[rowSums(is.na(presti)) != ncol(presti),] 
-
+#create a presti data frame for subsets
+presti_chemical_sub <- presti
 #Remove all the rows that full of NAs
 presti <- presti[rowSums(is.na(presti[,2:6])) != 5, ]
 
@@ -15,6 +16,10 @@ presti$Pesticide <- toupper(presti$Pesticide)
 full_list <- full_join(strawb_sub,presti, by = c("Chemicaltype" = "Pesticide"))
 
 full_list <- full_list[!(is.na(full_list$Year) | full_list$Year=="NA"), ]
+
+#Combine two dataset for chemical subset
+full_list_chemical_sub <- full_join(chemical_sub,presti_chemical_sub, by = c("Chemicaltype" = "Pesticide"))
+full_list_chemical_sub <- full_list_chemical_sub[!(is.na(full_list_chemical_sub$Year) | full_list_chemical_sub$Year=="NA"), ]
 
 
 
