@@ -42,3 +42,10 @@ strawb_sub <- strawb_sub %<>% separate(col = Domain.Category,
 
 
 strawb_sub <- strawb_sub[complete.cases(strawb_sub$Code),]
+
+for (i in 1:length(strawb_sub$Year)) {
+  strawb_sub$Chemicaltype[i] <- trimws(strawb_sub$Chemicaltype[i])
+}
+
+
+
