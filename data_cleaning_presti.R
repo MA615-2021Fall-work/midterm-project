@@ -16,6 +16,7 @@ presti_chemical_sub$Pesticide <- toupper(presti_chemical_sub$Pesticide)
 
 full_list <- full_join(strawb_sub,presti, by = c("Chemicaltype" = "Pesticide"))
 
+
 full_list <- full_list[!(is.na(full_list$Year) | full_list$Year=="NA"), ]
 
 #Combine two dataset for chemical subset
