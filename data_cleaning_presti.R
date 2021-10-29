@@ -1,4 +1,3 @@
-source("data_cleaning_strawb.R")
 source("dataclean_for_whole_df.R")
 
 #Remove all the NAs in the first column

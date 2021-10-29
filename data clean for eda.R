@@ -36,3 +36,8 @@ for (i in 1:length(chemical$Year)) {
 
 
 chemical <- subset(chemical, select = c(Year,State,Chemical,Chemicaltype,Value,measurement,Carcinogen,Hormone.Disruptor,Neurotoxins,Developmental.or.Reproductive.Toxins,toxicitylevelhuman,Bee.Toxins,toxicitylevelbee))
+
+
+
+
+
