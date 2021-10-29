@@ -23,9 +23,6 @@ fert_sub <- subset(strawbwhole, Domain == "FERTILIZER")
 total_sub <- subset(strawbwhole, Domain == "TOTAL")
 
 
-#Clean organic subset
-
-
 #Clean chemical subset
 #Replace NAs in units with blanks
 chemical_sub$units[is.na(chemical_sub$units)] <- " "
@@ -37,10 +34,13 @@ chemical_sub$measurement <- chemical_sub$units
 chemical_sub$Domain.Category <- gsub("[()]", "", chemical_sub$Domain.Category)
 chemical_sub$Domain.Category <- gsub(".*:", "", chemical_sub$Domain.Category) 
 
+chemical_sub<- subset(chemical_sub, Domain.Category != " TOTAL")
+
 chemical_sub <- chemical_sub %<>% separate(col = Domain.Category,
                                        into = c("Chemicaltype", "Code"),
                                        sep = "=",
                                        fill = "right")
+
 
 chemical_sub <- chemical_sub[complete.cases(chemical_sub$Code),]
 
@@ -49,7 +49,6 @@ for (i in 1:length(chemical_sub$Year)) {
 }
 
 
-#Clean for fert subset
 
-#Clean for total subset
+
 
