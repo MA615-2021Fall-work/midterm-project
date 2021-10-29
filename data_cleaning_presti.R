@@ -1,5 +1,5 @@
-source("data cleaning strawb.R")
-source("dataclean for whole df.R")
+source("data_cleaning_strawb.R")
+source("dataclean_for_whole_df.R")
 
 #Remove all the NAs in the first column
 presti <- presti[rowSums(is.na(presti)) != ncol(presti),] 

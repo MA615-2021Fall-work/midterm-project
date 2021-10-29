@@ -1,5 +1,5 @@
-source("dataclean for whole df.R")
-source("data cleaning presti.R")
+source("dataclean_for_whole_df.R")
+source("data_cleaning_presti.R")
 
 chemical <- full_list_chemical_sub
 
