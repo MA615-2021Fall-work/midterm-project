@@ -13,16 +13,16 @@ chemical$Bee.Toxins[is.na(chemical$Bee.Toxins)] <- "unknown"
 chemical$Carcinogen <- factor(chemical$Carcinogen, levels = c("known","probable","possible","unknown"))
 chemical$Carcinogen <- factor(chemical$Carcinogen, levels = rev(levels(chemical$Carcinogen)))
 
-chemical$Hormone.Disruptor <- factor(chemical$Hormone.Disruptor, labels = c("suspected","unknown"))
+chemical$Hormone.Disruptor <- factor(chemical$Hormone.Disruptor, levels = c("suspected","unknown"))
 chemical$Hormone.Disruptor <- factor(chemical$Hormone.Disruptor, levels = rev(levels(chemical$Hormone.Disruptor)))
 
-chemical$Neurotoxins <- factor(chemical$Neurotoxins, labels = c("present","unknown"))
+chemical$Neurotoxins <- factor(chemical$Neurotoxins, levels = c("present","unknown"))
 chemical$Neurotoxins <- factor(chemical$Neurotoxins, levels = rev(levels(chemical$Neurotoxins)))
 
-chemical$Developmental.or.Reproductive.Toxins <- factor(chemical$Developmental.or.Reproductive.Toxins,labels = c("present","unknown"))
+chemical$Developmental.or.Reproductive.Toxins <- factor(chemical$Developmental.or.Reproductive.Toxins,levels = c("present","unknown"))
 chemical$Developmental.or.Reproductive.Toxins <- factor(chemical$Developmental.or.Reproductive.Toxins, levels = rev(levels(chemical$Developmental.or.Reproductive.Toxins)))
 
-chemical$Bee.Toxins <- factor(chemical$Bee.Toxins, labels = c("high","moderate","slight","unknown"))
+chemical$Bee.Toxins <- factor(chemical$Bee.Toxins, levels = c("high","moderate","slight","unknown"))
 chemical$Bee.Toxins <- factor(chemical$Bee.Toxins, levels = rev(levels(chemical$Bee.Toxins)))
 
 
