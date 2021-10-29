@@ -10,20 +10,20 @@ chemical$Developmental.or.Reproductive.Toxins[is.na(chemical$Developmental.or.Re
 chemical$Bee.Toxins[is.na(chemical$Bee.Toxins)] <- "unknown"
 
 #Give the toxins variable levels
-chemical$Carcinogen <- factor(chemical$Carcinogen, labels = c("unknown", "probable", "possible","known"))
+chemical$Carcinogen <- factor(chemical$Carcinogen, levels = c("known","probable","possible","unknown"))
+chemical$Carcinogen <- factor(chemical$Carcinogen, levels = rev(levels(chemical$Carcinogen)))
 
+chemical$Hormone.Disruptor <- factor(chemical$Hormone.Disruptor, labels = c("suspected","unknown"))
+chemical$Hormone.Disruptor <- factor(chemical$Hormone.Disruptor, levels = rev(levels(chemical$Hormone.Disruptor)))
 
-chemical$Hormone.Disruptor <- factor(chemical$Hormone.Disruptor, labels = c("unknown","suspected"))
+chemical$Neurotoxins <- factor(chemical$Neurotoxins, labels = c("present","unknown"))
+chemical$Neurotoxins <- factor(chemical$Neurotoxins, levels = rev(levels(chemical$Neurotoxins)))
 
+chemical$Developmental.or.Reproductive.Toxins <- factor(chemical$Developmental.or.Reproductive.Toxins,labels = c("present","unknown"))
+chemical$Developmental.or.Reproductive.Toxins <- factor(chemical$Developmental.or.Reproductive.Toxins, levels = rev(levels(chemical$Developmental.or.Reproductive.Toxins)))
 
-chemical$Neurotoxins <- factor(chemical$Neurotoxins, labels = c("unknown","present"))
-
-
-chemical$Developmental.or.Reproductive.Toxins <- factor(chemical$Developmental.or.Reproductive.Toxins,labels = c("unknown","present"))
-
-
-chemical$Bee.Toxins <- factor(chemical$Bee.Toxins, labels = c("unknown","slight","moderate","high"))
-
+chemical$Bee.Toxins <- factor(chemical$Bee.Toxins, labels = c("high","moderate","slight","unknown"))
+chemical$Bee.Toxins <- factor(chemical$Bee.Toxins, levels = rev(levels(chemical$Bee.Toxins)))
 
 
 #Create toxicity-level column for bee
@@ -34,5 +34,9 @@ for (i in 1:length(chemical$Year)) {
 }
 
 
-
 chemical <- subset(chemical, select = c(Year,State,Chemical,Chemicaltype,Value,measurement,Carcinogen,Hormone.Disruptor,Neurotoxins,Developmental.or.Reproductive.Toxins,toxicitylevelhuman,Bee.Toxins,toxicitylevelbee))
+
+
+
+
+
