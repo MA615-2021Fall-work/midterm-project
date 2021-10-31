@@ -1,7 +1,5 @@
-source("dataclean_for_whole_df.R")
-source("data_cleaning_strawb.R")
-source("data_cleaning_presti.R")
-source("data clean for eda.R")
+source("ultimate data wrangle and clean.R")
+
 
 library(ggplot2)
 library(maps)
