@@ -1,8 +1,3 @@
-library(shiny)
-library(tidyverse)
-library(dplyr)
-library(magrittr)
-presti <- read.csv("Pesticides.csv",header = T, na.strings = c("", "NA"))
 strawb <- read.csv("Strawberries.csv")
 
 #Split the Domain.Category column for the Dataset: strawb:
