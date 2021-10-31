@@ -2,8 +2,8 @@ library(shiny)
 library(tidyverse)
 library(dplyr)
 library(magrittr)
-pesti <- read.csv("Pesticides.csv",header = T, na.strings = c("", "NA"))
-strawbwhole <- read.csv("Strawberries.csv")
+pesti <- read.csv("Pesticides.csv",header = T, na.strings = c("", "NA"),stringsAsFactors=FALSE)
+strawbwhole <- read.csv("Strawberries.csv",stringsAsFactors=FALSE)
 #Drop empty columns
 strawbwhole <- strawbwhole[-c(4,8:15)]
 #Separate Data.Item to 4 columns

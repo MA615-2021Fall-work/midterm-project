@@ -88,7 +88,8 @@ sum(is.na(chemical_clean_number$Value))
 # chemicals that are rated higher by out 'toxicitylevelhuman' variable.
 
 edaplot <- ggplot() +
-  geom_point(aes(x = chemical_clean_lbperacre$State, y = chemical_clean_lbperacre$Value, col = chemical_clean_lbperacre$toxicitylevelhuman))
+  geom_point(aes(x = chemical_clean_number$State, y = chemical_clean_number$Value, 
+  ),col = chemical_clean_number$toxicitylevelhuman)
 print(edaplot)
 
 
