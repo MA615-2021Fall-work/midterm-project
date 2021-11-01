@@ -10,6 +10,7 @@ source("eda.R")
 
 
 
+
 ui <- fluidPage(
   # the navbarpage
     navbarPage("The relationship between stawberry and pesticides",theme = shinytheme("lumen"),
