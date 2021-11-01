@@ -1,7 +1,4 @@
-source("dataclean_for_whole_df.R")
-source("data_cleaning_strawb.R")
-source("data_cleaning_presti.R")
-source("data clean for eda.R")
+source("ultimate data wrangle and clean.R")
 
 library(ggplot2)
 library(maps)
@@ -16,7 +13,7 @@ library(maps)
 ## filtering chemicals included in the presti dataset
 chemical_clean <- chemical %>%
   filter(grepl('ACETAMIPRID|AZOXYSTROBIN|BIFENAZATE|BIFENTHRIN|BOSCALID|CAPTAN|CARBARYL|CARBENDAZIM|CHLORPYRIFOS|CYPRODINIL|DICHLORVOS|DIMETHOATE|ENDOSULFAN|FENHEXAMID|FENPROPATHRIN|FLUDIOXONIL|HEXYTHIAZOX|IMIDACLOPRID|IPRODIONE|MALAOXON|MALATHION|METALAXYL|MEFENOXAM|METHOMYL|METHOXYFENOZIDE|MYCLOBUTANIL|OXAMYL|PIPERONYL|PROPICONAZOLE|PYRACLOSTROBIN|PYRIMETHANIL|PYRIPROXYFEN|QUINOXYFEN|SPINOSAD|SPIROMESIFEN|TEBUCONAZOLE|TETRAHYDROPHTHALIMIDE|THIABENDAZOLE|THIAMETHOXAM|TRIFLOXYSTROBIN|TRIFLUMIZOLE', Chemicaltype))
-
+chemical_clean$Value <- as.numeric(chemical_clean_lbperacre$Value)
 
 # Pounds per acre
 
