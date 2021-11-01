@@ -1,11 +1,5 @@
 source("ultimate data wrangle and clean.R")
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
 
->>>>>>> 1e4227f121e8c43539b5f23da0b81fec94ba2122
->>>>>>> 3c9e4350f3654b1d7dc29d617a07ac3f003dbcd3
 
 library(ggplot2)
 library(maps)
