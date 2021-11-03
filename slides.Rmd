@@ -1,7 +1,7 @@
 ---
-title: "MIDTERM PROJECT"
-author: "Andrew Sisitzky,Chen Xu,Guangze Yu,Yuyang Li"
-date: "20201 November 1"
+title: "<b>MIDTERM PROJECT</b>"
+author: "<br>Andrew Sisitzky,Chen Xu<br>Guangze Yu,Yuyang Li"
+date: "<br>2021 November 1"
 output: 
   revealjs::revealjs_presentation:
     #template: hw_temp_1.html
@@ -11,11 +11,11 @@ output:
 ---
 
 
-```{r setup, include=FALSE, warning=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 pacman::p_load("tidyverse","ggplot2","dplyr", "maps", "treemapify")
-source("ultimate data wrangle and clean.R")
-source("visualization function midterm.R")
+source("ultimate data wrangle and clean.R", echo=TRUE)
+source("visualization function midterm.R", echo=TRUE)
 ```
 
 
@@ -33,24 +33,24 @@ DATA WRANGLING
 
 
 ## Data clean-Strawberries.csv
- - Take apart strawberries.csv and restructure, 
- - Use <i><b>Year, State, Domain, Chemical, Chemical type, Value, units </i></b>as variable to get a new table
+ - Take apart strawberries.csv and restructure.
+ - Use <i><b>Year, State, Domain, Chemical, Chemical type, Value, units </i></b>as variable to get a new table.
  
- - Select data when<i><b> Domain = "CHEMICAL"</i></b>
+ - Select data when<i><b> Domain = "CHEMICAL"</i></b>.
  
 ## Data clean-Strawberries.csv
 
- - Empty rows were removed to make the data more compact
+ - Empty rows were removed to make the data more compact.
  
- - The name of various pesticides were converted to uppercase letters for later matching
+ - The name of various pesticides were converted to uppercase letters for later matching.
 
 ## Data wrangling-left_join
 
- - Function <i>left_join</i> is used to match the data by <i><b>"chemicaltype = pesticide" </i></b> 
+ - Function <i>left_join</i> is used to match the data by <i><b>"chemicaltype = pesticide" </i></b> .
  
- - Combine them into one table for subsequent EDA
+ - Combine them into one table for subsequent EDA.
  
- - Delete the missing value if <i><b>"Year = NA"</i></b>
+ - Delete the missing value if <i><b>"Year = NA"</i></b>.
 
 
 </section>
@@ -65,7 +65,7 @@ MAKE JUDGEMENTS
 </div>
 
 
-## Give a level for toxins
+## Give a number for toxins
 
  - <b>For human</b>
 <div><br>
@@ -128,19 +128,28 @@ MAKE JUDGEMENTS
 </tbody></table></div>
 
 
-## Calculate total toxicity level
+## Calculate total toxins
  -  <b>For human</b>
  
-    + Toxicity level for human = <i>Carcinogen+HormoneDisruptor+Neurotoxins+ Developmental or Reproductive Toxins</i>
+    + Toxicity for human = <i>Carcinogen+HormoneDisruptor+Neurotoxins+ Developmental or Reproductive Toxins</i>
      
  -  <b>For bee</b>
  
-    + Toxicity level for bee = <i>Bee.Toxins</i>  
+    + Toxicity for bee = <i>Bee.Toxins</i>  
   
-## Pose our project topic
 
- How the human-harm pesticide usage differ as time passes in the major strawberries producing areas in the US.
 
+</section>
+
+# 
+<div style= "align:center; font-size:80px;">
+<p><br><br><b>
+Topic we study
+</b>
+</p>
+
+</div>
+ - How the human-harm pesticide usage differ as time passes in the major strawberries producing areas in the US.
 </section>
 
 # 
@@ -154,91 +163,85 @@ EDA
 </div>
 
 
-## Choose data for map
+## Choose data to plot
 
- - Select chemical types exist in <i><b>Pesticides.csv</i></b>
+ - Select chemical types exist in <i><b>Pesticides.csv</i></b>.
  
- - Filter dataframe into subsets in different measurements
+ - Filter dataframe into subsets in different measurements.
     + MEASURED IN LB / ACRE / YEAR  AVG
     + MEASURED IN PCT OF AREA BEARING  AVG
     + MEASURED IN LB
     + MEASURED IN LB / ACRE / APPLICATION  AVG
     + MEASURED IN NUMBER  AVG
- 
- - Subset the dataframe by year
-    + 2016
-    + 2018
-    + 2019
+  - We chose subset of <b>MEASURED IN LB</b> for later analysis.
 
-## Choose data for plot
-
- - Calculate the frequency of chemical type and add a column to store the values and merge the three dataset by chemical type
- 
- - Calculate the frequency of toxicity level for human for each year
- 
-
-## The map for major strawberry producing area in the US(including the mean toxicity level for human)
+## Map of mean toxicity for human
 
  - Created a map to visualize the mean toxicity for each state.
- - Took data across all years, calculated the means, and plotted the results on a map of the United States
+
+
+ - Took data across all years, calculated the means, and plotted the results on a map of the United States.
  
  
 ## The map:
 
-```{r}
+```{r,echo=FALSE}
 map_function(eda_subset)
 ```
 
-## The map for major strawberry producing area in the US(including the mean toxicity level for human)
-
+## Conclusion of map
  - We found that California and Florida on average had lower human toxicity levels than Washington and Oregon.
+ 
  - This plot shows that, based on this dataset, the harvests in Oregon tended to use chemicals that were rated higher by our toxicity scale in comparison to other states.
 
-## Total Pesticide usage: 2016 vs. 2018 vs. 2019
+
+## Pesticides frequency
+
+ - For the first plot, we focused on frequency of total pesticides across 3 years. 
  
- - After our initial analysis of our data, we plot the total pesticide usage comparison for four states from 2016 to 2019 except 2017. From the bar chart, we can see that the pesticide usage is getting lower as time passes. 
+ -  For the second plot, we looked at each chemical type and plotted its frequency of usage across 3 years.
  
-## Total Pesticide usage: 2016 vs. 2018 vs. 2019 plot
-```{r}
+ 
+## Total Pesticides frequency <br>2016 vs. 2018 vs. 2019
+```{r,echo=FALSE}
 chemcialtype_freq_barchart_function(chemicaltype_freq)
 ```
 
-
-## Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019
-
- - After we looked at the total usage of pesticides in our previous plot, we decided that we wanted to look deeper into the usage of pesticide over the years of data that we have access to. 
- - For this plot, we looked at each chemical type and plotted its frequency of usage across 3 years.
- 
-## Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019 plot
-```{r}
+## Separate Pesticides frequency <br>2016 vs. 2018 vs. 2019
+```{r,echo=FALSE}
 chemicaltype_freq_function(chemicaltype_freq)
 ```
 
-## Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019 conclusion
-
- - We find that the total amount of chemical be used across the 3 years decreased
+## Conclusion of pesticides frequency
+ - We find that the amount of chemical be used across the 3 years decreased.
+ 
  - Now as we know the specific usage of each chemical type through 3 years. We want to dive deeper into the distribution of toxicity level that related to human for each year.
 
-## Pesticide Toxicitylevelhuman Frequency 2016
-```{r}
+## Frequency of 5 toxicity levels for human
+ - Dive deeper into the distribution of toxicity level that related to human for each year.
+ 
+ - Using the toxicity levels we defined before. 
+
+## Frequency 2016
+```{r,echo=FALSE}
 human_toxicity_level_function(year1_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2016")
 ```
 
-## Pesticide Toxicitylevelhuman Frequency 2018
-```{r}
+
+## Frequency 2018
+```{r,echo=FALSE}
 human_toxicity_level_function(year2_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2018")
 ```
 
-## Pesticide Toxicitylevelhuman Frequency 2019
-```{r}
+## Frequency 2019
+```{r,echo=FALSE}
 human_toxicity_level_function(year3_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2019")
 ```
 
 ## Conclusion for EDA and our posed project topic:
-
- - After we view all the three plots about the distribution, we conclude that althought the total amount of chemical be used across the 3 years decreased, the propotion of toxicitylevel remains relatively the same. 
+ - After we view all the three plots about the distribution, we conclude that althought the total amount of chemical be used across the 3 years decreased, the propotion of toxicitylevel remains relatively the same.
+ 
  - We can say that even though the amount of chemicals they are treating the strawberries with is decreasing, those that they are using are still known to be toxic to humans.
-
 
 </section>
 
