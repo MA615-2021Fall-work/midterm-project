@@ -12,11 +12,10 @@ output:
 
 
 ```{r setup, include=FALSE}
-library(png)
-library(grid)
-library(knitr)
-source("eda.R")
-opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load("tidyverse","ggplot2","dplyr", "maps", "treemapify")
+source("ultimate data wrangle and clean.R", echo=TRUE)
+source("visualization function midterm.R", echo=TRUE)
 ```
 
 
@@ -69,19 +68,66 @@ MAKE JUDGEMENTS
 ## Give a number for toxins
 
  - <b>For human</b>
-    + Carcinogen:<i>known=4,probable=3,possible=2,unknown=1</i>
-    
-    + Hormone.Disruptor:<i>suspected=2,unknown=1</i>
-    
-    + Neurotoxins:<i>present=2,unknown=1</i>
-    
-    + Developmental/ReproductiveToxins:<i>present=2,unknown=1</i>
-    
+<div><br>
+<table><tbody>
+<tr>
+<th style="width: 344px; padding: 3px; border-color: rgb(0, 0, 0);">Chemical\Level</th>
+<th style="width: 151px; padding: 3px; border-color: rgb(0, 0, 0);">1</th>
+<th style="width: 156px; padding: 3px; border-color: rgb(0, 0, 0);">2</th>
+<th style="width: 155px; padding: 3px; border-color: rgb(0, 0, 0);">3</th>
+<th style="padding: 3px; border-color: rgb(0, 0, 0);">4</th>
+</tr>
+<tr>
+<td style="width: 344px; padding: 3px; border-color: rgb(0, 0, 0);">Carcinogen:</td>
+<td style="width: 151px; padding: 3px; border-color: rgb(0, 0, 0);">unknown</td>
+<td style="width: 156px; padding: 3px; border-color: rgb(0, 0, 0);">possible</td>
+<td style="width: 155px; padding: 3px; border-color: rgb(0, 0, 0);">probable</td>
+<td style="padding: 3px; border-color: rgb(0, 0, 0);">known</td>
+</tr>
+<tr>
+<td style="width: 344px; padding: 3px; border-color: rgb(0, 0, 0);">Hormone.Disruptor</td>
+<td style="width: 151px; padding: 3px; border-color: rgb(0, 0, 0);">unknown</td>
+<td style="width: 156px; padding: 3px; border-color: rgb(0, 0, 0);">suspected</td>
+<td style="width: 155px; padding: 3px; border-color: rgb(0, 0, 0);"></td>
+<td style="padding: 3px; border-color: rgb(0, 0, 0);"></td>
+</tr>
+<tr>
+<td style="width: 344px; padding: 3px; border-color: rgb(0, 0, 0);">Hormone.Disruptor</td>
+<td style="width: 151px; padding: 3px; border-color: rgb(0, 0, 0);">unknown</td>
+<td style="width: 156px; padding: 3px; border-color: rgb(0, 0, 0);">present</td>
+<td style="width: 155px; padding: 3px; border-color: rgb(0, 0, 0);"></td>
+<td style="padding: 3px; border-color: rgb(0, 0, 0);"></td>
+</tr>
+<tr>
+<td style="width: 344px; padding: 3px; border-color: rgb(0, 0, 0);">Developmental/Reproductive Toxins</td>
+<td style="width: 151px; padding: 3px; border-color: rgb(0, 0, 0);">unknown</td>
+<td style="width: 156px; padding: 3px; border-color: rgb(0, 0, 0);">present</td>
+<td style="width: 155px; padding: 3px; border-color: rgb(0, 0, 0);"></td>
+<td style="padding: 3px; border-color: rgb(0, 0, 0);"></td>
+</tr>
+</tbody></table><br></div>
+
 
  -  <b>For bee</b>
- 
-    + Bee.Toxins:<i>high=4,moderate=3,slight=2,unknown=1</i>
-    
+ <div><br>
+<table><tbody>
+<tr>
+<th style="width: 259px; padding: 3px;">Chemical\Level</th>
+<th style="padding: 3px;">1</th>
+<th style="padding: 3px;">2</th>
+<th style="padding: 3px;">3</th>
+<th style="padding: 3px;">4</th>
+</tr>
+<tr>
+<td style="width: 259px; padding: 3px;">Bee.Toxins</td>
+<td style="padding: 3px;">unknown</td>
+<td style="padding: 3px;">slight</td>
+<td style="padding: 3px;">moderate</td>
+<td style="padding: 3px;">high</td>
+</tr>
+</tbody></table></div>
+
+
 ## Calculate total toxins
  -  <b>For human</b>
  
@@ -94,7 +140,9 @@ MAKE JUDGEMENTS
 
 
 </section>
+
 # 
+
 <div style= "align:center; font-size:80px;">
 <p><br><br><b>
 EDA
@@ -115,32 +163,53 @@ EDA
     + MEASURED IN LB / ACRE / APPLICATION  AVG
     + MEASURED IN NUMBER  AVG
 
-## EDA PLOT 1
+## The map for major strawberry producing area in the US(including the mean toxicity level for human)
 
- - Looking at the average lbs of strawberries harvested per acre in each state.Added color to show the toxicity level of each observation. 
+ - Created a map to visualize the mean toxicity for each state.
+ - Took data across all years, calculated the means, and plotted the results on a map of the United States
+ - We found that California and Florida on average had lower human toxicity levels than Washington and Oregon.
  
- - It appears that the harvests with higher lbs per acre also tend to be treated with chemicals that are rated higher by out <i><b>'toxicitylevelhuman'</i></b> variable.
  
- 
-## 
+## The map:
+
 ```{r}
-edaplot <- ggplot(data=chemical_clean_lbperacre,mapping=aes(x=State,y=Value))+geom_point(mapping=aes(color=toxicitylevelhuman))+scale_color_gradient(low="blue", high="red")+theme(axis.text.x = element_text(angle = 90))
-edaplot 
+map_function(eda_subset)
 ```
 
 
-## EDA Plot 2
-
- - Adding the <b>mean toxicity</b> of all observations in each state to the map.  
+## Total Pesticide usage: 2016 vs. 2018 vs. 2019
  
  - This plot shows that, based on this dataset, the harvests in Oregon tended to use chemicals that were rated higher by our toxicity scale in comparison to other states.
  
-##
-
+## Total Pesticide usage: 2016 vs. 2018 vs. 2019 plot
 ```{r}
-edaplot2 <- ggplot() +geom_polygon( data=eda_subset, aes(x=long, y=lat, group=group,fill = mean_toxicity), color="white",size = 0.2)
-edaplot2
+chemcialtype_freq_barchart_function(chemicaltype_freq)
 ```
+
+
+## Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019
+```{r}
+chemicaltype_freq_function(chemicaltype_freq)
+```
+
+## Pesticide Toxicitylevelhuman Frequency 2016
+```{r}
+human_toxicity_level_function(year1_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2016")
+```
+
+
+## Pesticide Toxicitylevelhuman Frequency 2018
+```{r}
+human_toxicity_level_function(year2_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2018")
+```
+
+## Pesticide Toxicitylevelhuman Frequency 2019
+```{r}
+human_toxicity_level_function(year3_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2019")
+```
+
+
+
 
 </section>
 
