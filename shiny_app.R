@@ -5,86 +5,97 @@ library(ggplot2)
 library(readr)
 library(shinyjs)
 library(shinycssloaders)
+library(treemapify)
 source("ultimate data wrangle and clean.R")
-source("eda.R")
+source("visualization function midterm.R")
 
 
 
 
 ui <- fluidPage(
+    theme = shinytheme("cerulean"),
   # the navbarpage
-    navbarPage("The relationship between stawberry and pesticides",theme = shinytheme("lumen"),
+    navbarPage("EDA for Strawberry",theme = shinytheme("lumen"),
+               tabPanel("Location", fluid = TRUE,icon = icon("globe-americas"),
+                        titlePanel("Geographical Location Information"),
+                        sidebarLayout(
+                          sidebarPanel(
+                            titlePanel("State list"),
+                            HTML("California<br/>Florida<br/>Oregon<br/>Washington")
+                          ),
+                          mainPanel(
+                            plotOutput(outputId = "GeoplotFinder",click = "plot_click_1"),
+                            verbatimTextOutput("info_1"),
+                            helpText("Tip: Clicking the plot will show specific longitude and latitude.")
+                            
+                          )
+                        )
+                        
+               ),
+               
              # Add row choices
-              tabPanel("Stawberry Summary", fluid = TRUE,icon = icon("chart-bar"),
-                titlePanel("EDA for Strawberry"),
+              tabPanel("Pesdicide usage", fluid = TRUE,icon = icon("chart-bar"),
                 sidebarLayout(
                   sidebarPanel(
         # Select state
-                    titlePanel("Desired Year and Measurement"),
+                    titlePanel(HTML("<h3>Desired Year")),
                     fluidRow(
-                          #radioButtons(inputId ="StateFinder",
-                               #        label = "Choose one state",
-                               #        choices= list("CALIFORNIA",
-                               #                      "FLORIDA",
-                                 #                    "OREGON",
-                                 #                    "WASHINGTON"
-                                  #                    )
-                                  #      ),
             # Select year
                             checkboxGroupInput(inputId ="YearFinder",
-                                               label = "MUST choose at least  one year",
-                                               choices  = c("2019",
-                                                            "2020",
-                                                            "2021"
+                                               label = "MUST choose at least one year",
+                                               choices  = c("2016",
+                                                            "2018",
+                                                            "2019"
                                                             )
                                                 ),
-            # Select measurement
-                            checkboxGroupInput(inputId ="MeasureFinder",
-                                               label = "MUST choose at least one Measurement",
-                                               choices  = c(" MEASURED IN LB / ACRE / YEAR  AVG",
-                                                            " MEASURED IN PCT OF AREA BEARING  AVG",
-                                                            " MEASURED IN LB ",
-                                                            " MEASURED IN LB / ACRE / APPLICATION  AVG",
-                                                            " MEASURED IN NUMBER  AVG"
-                                                            )
-                                                ),
-            helpText("Tip: If the plot is empty, this means that there is no avaiable data under this filter conditions.")
+                            helpText("Tip: If the plot is empty, this means that there is no avaiable data under this filter conditions.")
             
-                          #actionButton("draw", "Filter!")
                                   )
                               ),
     # The major interactive plot
                   mainPanel(
-                            plotOutput(outputId = "scatterplotFinder",click = "plot_click"),
-                            verbatimTextOutput("info"),
-                            helpText("Tip: Clicking the plot will show specific x,y value.")
+                            plotOutput(outputId = "barplotFinder",click = "plot_click")
                             )
                           )
               ),
-              tabPanel("Location", fluid = TRUE,icon = icon("globe-americas"),
-                       titlePanel("Geographical Location Information"),
+    
+    # The plot of frequency
+            tabPanel("Pesticide Toxicitylevelhuman Frequency", fluid = TRUE,
+             sidebarLayout(
+               sidebarPanel(
+                 titlePanel("Pesticide Toxicitylevelhuman Frequency 2016 vs. 2018 vs. 2019"
+                 ),
+                 fluidRow(
+                   # Select year
+                   radioButtons(inputId ="LayerFinder",
+                                label = "MUST choose one year",
+                                choiceNames   = c("2016",
+                                                   "2018",
+                                                   "2019"
+                                      ),
+                                choiceValues = c("2016","2018","2019")
+                   )
+                 )
+               ),
+               mainPanel(
+                 plotOutput(outputId = "LayerplotFinder")
+               )
+             )
+    ),
+    
+    
+    # The total pesticide plot
+    
+              tabPanel("Total Pesticide", fluid = TRUE,
                        sidebarLayout(
                          sidebarPanel(
-                           titlePanel("Desired State"),
-                           fluidRow(
-                                    checkboxGroupInput(inputId ="StateFinder",
-                                                       label = "MUST choose at least one state",
-                                                       choices= list("CALIFORNIA",
-                                                                     "FLORIDA",
-                                                                     "OREGON",
-                                                                     "WASHINGTON"
-                                                                     )
-                                                )
-                                    )
-                                     ),
+                            titlePanel("Total Pesticide usage: 2016 vs. 2018 vs. 2019"
+                                       )
+                                        ),
                          mainPanel(
-                           plotOutput(outputId = "GeoplotFinder",click = "plot_click_1"),
-                           verbatimTextOutput("info_1"),
-                           helpText("Tip: Clicking the plot will show specific longitude and latitude.")
-                           
+                           plotOutput(outputId = "YearplotFinder")
                          )
                        )
-                       
               ),
   
   # Add author information
@@ -92,7 +103,7 @@ ui <- fluidPage(
              tabPanel("About", fluid = TRUE,
                       column(6,
                              h4(p("About the Project")),
-                             h5(p("This project is about the relationship between strawberries and pesticides ")),
+                             h5(p("How the human-harm pesticide usage differ as time passes in the major strawberries producing areas in the US.")),
                              br()
                       ),
                       column(6,
@@ -111,42 +122,37 @@ ui <- fluidPage(
 
 server <- function(input, output,session) {
   # Recall the origianl dataset.
-  chemical_clean <- data.frame(chemical_clean)
+  chemicaltype_freq <- data.frame(chemicaltype_freq)
   eda_subset <- data.frame(eda_subset)
+  
   # Render select Input
   
   datasetInput1 <- reactive({
-    chemical_clean  %>% 
-      filter(measurement %in% input$MeasureFinder,
-            Year %in% input$YearFinder
-             #State == input$StateFinder)
-      )
-  })
-  datasetInput2 <- reactive({
-    eda_subset  %>% 
-      filter(State %in% input$StateFinder
-      )
+    chemicaltype_freq %<>% filter(year %in% input$YearFinder)
   })
   
-    output$scatterplotFinder <- renderPlot({
-      ggplot(datasetInput1()) +
-      geom_point(aes(x = State,y= Value,col = toxicitylevelhuman))+
-      scale_color_gradient(low="blue", high="red")+
-      xlab("State name") +
-      ylab("Value")
+    output$barplotFinder <- renderPlot({
+    chemicaltype_freq_function(datasetInput1())
     })
     
-    output$info <- renderText({
-      paste0("x=", input$plot_click$x, "\ny=", input$plot_click$y)
+    output$YearplotFinder <- renderPlot({
+    chemcialtype_freq_barchart_function(chemicaltype_freq)
     })
     
-    output$GeoplotFinder <- renderPlot({
-      ggplot(datasetInput2()) +
-        geom_polygon(aes(x=long, y=lat, group=group, fill = mean_toxicity), color="white", size = 0.2) +
-        xlab("Longitude") +
-        ylab("Laitude")
+    output$LayerplotFinder <- renderPlot({
+      if (input$LayerFinder == "2016") {
+        human_toxicity_level_function(year1_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2016")
+      } else if (input$LayerFinder == "2018"){
+        human_toxicity_level_function(year2_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2018")
+      } else {
+        human_toxicity_level_function(year3_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2019")
+      }
       
     })
+    output$GeoplotFinder <- renderPlot({
+    map_function(eda_subset)
+    })
+    
     output$info_1 <- renderText({
       paste0("Longitude=", input$plot_click_1$x, "\nLatitude=", input$plot_click_1$y)
     })
