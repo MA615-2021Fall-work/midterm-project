@@ -137,7 +137,9 @@ MAKE JUDGEMENTS
  
     + Toxicity level for bee = <i>Bee.Toxins</i>  
   
+## Pose our project topic
 
+ - How the human-harm pesticide usage differ as time passes in the major strawberries producing areas in the US.
 
 </section>
 
@@ -202,7 +204,8 @@ chemcialtype_freq_barchart_function(chemicaltype_freq)
 
 ## Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019
 
- - After we looked at the total usage of pesticides in our previous plot, we decided that we wanted to look deeper into the usage of pesticide over the years of data that we have access to. For this plot, we looked at each chemical type and plotted its frequency of usage across 3 years.
+ - After we looked at the total usage of pesticides in our previous plot, we decided that we wanted to look deeper into the usage of pesticide over the years of data that we have access to. 
+ - For this plot, we looked at each chemical type and plotted its frequency of usage across 3 years.
  
 ## Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019 plot
 ```{r}
@@ -219,7 +222,6 @@ chemicaltype_freq_function(chemicaltype_freq)
 human_toxicity_level_function(year1_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2016")
 ```
 
-
 ## Pesticide Toxicitylevelhuman Frequency 2018
 ```{r}
 human_toxicity_level_function(year2_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2018")
@@ -230,9 +232,13 @@ human_toxicity_level_function(year2_toxicityhuman_freq) + ggtitle("Pesticide Tox
 human_toxicity_level_function(year3_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2019")
 ```
 
-## Conclusion:
+## Conclusion for EDA and our posed project topic:
 
-- After we view all the three plots about the distribution, we conclude that althought the total amount of chemical be used across the 3 years decreased, the propotion of toxicitylevel remains relatively the same. We can say that even though the amount of chemicals they are treating the strawberries with is decreasing, those that they are using are still known to be toxic to humans.
+ - After we view all the three plots about the distribution, we conclude that althought the total amount of chemical be used across the 3 years decreased, the propotion of toxicitylevel remains relatively the same. 
+ - We can say that even though the amount of chemicals they are treating the strawberries with is decreasing, those that they are using are still known to be toxic to humans.
+
+## Shiny Application
+
 
 
 </section>
