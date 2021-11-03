@@ -1,7 +1,7 @@
 ---
 title: "<b>MIDTERM PROJECT</b>"
-author: "<br>Andrew Sisitzky,Chen Xu<br>Guangze Yu,Yuyang Li"
-date: "<br>2021 November 1"
+author: "<br>Andrew Sisitzky,Daniel Xu<br>Guangze Yu,Yuyang Li"
+date: "<br>November 2nd 2021"
 output: 
   revealjs::revealjs_presentation:
     #template: hw_temp_1.html
@@ -242,6 +242,18 @@ human_toxicity_level_function(year3_toxicityhuman_freq) + ggtitle("Pesticide Tox
  - After we view all the three plots about the distribution, we conclude that althought the total amount of chemical be used across the 3 years decreased, the propotion of toxicitylevel remains relatively the same.
  
  - We can say that even though the amount of chemicals they are treating the strawberries with is decreasing, those that they are using are still known to be toxic to humans.
+
+
+# 
+<div style= "align:center; font-size:80px;">
+<p><br><br><b>
+Thank you!
+</b>
+</p >
+
+</div>
+</section>
+
 
 </section>
 
