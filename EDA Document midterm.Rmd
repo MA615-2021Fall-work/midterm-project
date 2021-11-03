@@ -9,7 +9,7 @@ output:
 ---
 
 ```{r setup, include=FALSE, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 pacman::p_load("tidyverse","ggplot2","dplyr", "maps", "treemapify")
 ```
 
@@ -33,8 +33,8 @@ Clean for EDA:
 In order to do our EDA, we subset the data by each year and with a certain measurement. And we add a column store the frequency of chemical type for "Total Pesticide usage: 2016 vs. 2018 vs. 2019" and "Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019" these two plots. We also create three datasets storing the frequency of toxicity level to humans of each year to do the plot: "Pesticide Toxicitylevelhuman Frequency 2016 vs. 2018 vs. 2019". 
 
 ```{r, include=FALSE, warning=FALSE}
-source("ultimate data wrangle and clean.R", echo=TRUE)
-source("visualization function midterm.R", echo=TRUE)
+source("ultimate data wrangle and clean.R")
+source("visualization function midterm.R")
 ```
 
 __The Original dataframe:__
