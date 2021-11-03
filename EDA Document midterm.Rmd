@@ -3,13 +3,13 @@ title: "EDA Document for MA615 Midterm Project"
 author: "Andrew Sisitzky, Daniel Xu, Guangze Yu, Yuyang Li"
 date: "November 2nd, 2021"
 output:
-  pdf_document: default
-  html_document:
-    df_print: paged
+  pdf_document: 
+    latex_engine: xelatex
+  html_document: default
 ---
 
-```{r setup, include=FALSE, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 pacman::p_load("tidyverse","ggplot2","dplyr", "maps", "treemapify")
 ```
 
@@ -25,16 +25,16 @@ We began by get the data from USDA about strawberries harvest and treatments acr
 For data cleaning:
 Firstly, we merge those two dataset by the pesticide type and subset all the strawberries treated not as organic.
 
-Secondly, we design a variable called: toxicity level for human. To get the value for this variable, we first assigned the toxicity level for Carcinogen from 1 to 4, Hormone.Disruptor range from 1 and 2, Neurotoxins range from 1 and 2 and Developmental.or.Reproductive.Toxins range from 1 and 2, and add them to a new toxcity level range from 4 to 10, higher the toxcity level is, the more toxic the pesticide type is.
+Secondly, we design a variable called: toxicity level for human. To get the value for this variable, we first assigned the toxicity level for Carcinogen：level1: unknown, level2: probable, level3: possible, level4: known. Hormone.Disruptor：level1: unknown, level2: suspected, Neurotoxine: level1: unknown, level2: present, Developmental.or.Reproductive.Toxins: level1: unknown, level2: present. And add them to a new toxcity level range from 4 to 10, higher the toxcity level is, the more toxic the pesticide type is. We also assigned toxicity level for bee.toxins: level1: unknown, level2: slight, level3: moderate, level4: high.
 
 Thirdly, we filtered the merged dataset to only include chemicals that were listed in our toxicity dataset. Therefore we only were left with the observations for which we had relevant data regarding their toxicity to humans.
 
 Clean for EDA:
-In order to do our EDA, we subset the data by each year and with a certain measurement. And we add a column store the frequency of chemical type for "Total Pesticide usage: 2016 vs. 2018 vs. 2019" and "Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019" these two plots. We also create three datasets storing the frequency of toxicity level to humans of each year to do the plot: "Pesticide Toxicitylevelhuman Frequency 2016 vs. 2018 vs. 2019". 
+In order to do our EDA, we subset the data by each year and with a certain measurement. And we add a column store the frequency of chemical type for "Total Pesticide usage: 2016 vs. 2018 vs. 2019" and "Comparison of Pesdicide usage: 2016 vs. 2018 vs. 2019" these two plots. We also create three datasets storing the frequency of toxicity level to humans of each year to do the plot: "Pesticide Toxicitylevelhuman Frequency 2016 vs. 2018 vs. 2019".  
 
 ```{r, include=FALSE, warning=FALSE}
-source("ultimate data wrangle and clean.R", echo=TRUE)
-source("visualization function midterm.R", echo=TRUE)
+source("ultimate data wrangle and clean.R")
+source("visualization function midterm.R")
 ```
 
 __The Original dataframe:__
