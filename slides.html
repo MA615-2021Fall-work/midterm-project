@@ -737,8 +737,9 @@ high
 <section id="the-map-for-major-strawberry-producing-area-in-the-usincluding-the-mean-toxicity-level-for-human" class="slide level2">
 <h2>The map for major strawberry producing area in the US(including the mean toxicity level for human)</h2>
 <ul>
-<li><p>Looking at the average lbs of strawberries harvested per acre in each state.Added color to show the toxicity level of each observation.</p></li>
-<li><p>It appears that the harvests with higher lbs per acre also tend to be treated with chemicals that are rated higher by out <i><b>‘toxicitylevelhuman’</i></b> variable.</p></li>
+<li>Created a map to visualize the mean toxicity for each state.</li>
+<li>Took data across all years, calculated the means, and plotted the results on a map of the United States</li>
+<li>We found that California and Florida on average had lower human toxicity levels than Washington and Oregon.</li>
 </ul>
 </section>
 <section id="the-map" class="slide level2">
@@ -749,8 +750,7 @@ high
 <section id="total-pesticide-usage-2016-vs.-2018-vs.-2019" class="slide level2">
 <h2>Total Pesticide usage: 2016 vs. 2018 vs. 2019</h2>
 <ul>
-<li><p>Adding the <b>mean toxicity</b> of all observations in each state to the map.</p></li>
-<li><p>This plot shows that, based on this dataset, the harvests in Oregon tended to use chemicals that were rated higher by our toxicity scale in comparison to other states.</p></li>
+<li>This plot shows that, based on this dataset, the harvests in Oregon tended to use chemicals that were rated higher by our toxicity scale in comparison to other states.</li>
 </ul>
 </section>
 <section id="total-pesticide-usage-2016-vs.-2018-vs.-2019-plot" class="slide level2">
@@ -790,52 +790,14 @@ high
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        // Display controls in the bottom right corner
-        controls: true,
-        // Display a presentation progress bar
-        progress: true,
-        // Display the page number of the current slide
-        slideNumber: false,
         // Push each slide change to the browser history
         history: true,
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-        // Enable the slide overview mode
-        overview: true,
         // Vertical centering of slides
         center: false,
-        // Enables touch navigation on devices with touch input
-        touch: true,
-        // Loop the presentation
-        loop: false,
-        // Change the presentation direction to be RTL
-        rtl: false,
-        // Turns fragments on and off globally
-        fragments: true,
-        // Flags if the presentation is running in an embedded mode,
-        // i.e. contained within a limited portion of the screen
-        embedded: false,
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
-        // Enable slide navigation via mouse wheel
-        mouseWheel: false,
-        // Opens links in an iframe preview overlay
-        previewLinks: false,
         // Transition style
         transition: 'default', // none/fade/slide/convex/concave/zoom
-        // Transition speed
-        transitionSpeed: 'default', // default/fast/slow
         // Transition style for full page slide backgrounds
         backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
 
 
 

@@ -165,9 +165,9 @@ EDA
 
 ## The map for major strawberry producing area in the US(including the mean toxicity level for human)
 
- - Looking at the average lbs of strawberries harvested per acre in each state.Added color to show the toxicity level of each observation. 
- 
- - It appears that the harvests with higher lbs per acre also tend to be treated with chemicals that are rated higher by out <i><b>'toxicitylevelhuman'</i></b> variable.
+ - Created a map to visualize the mean toxicity for each state.
+ - Took data across all years, calculated the means, and plotted the results on a map of the United States
+ - We found that California and Florida on average had lower human toxicity levels than Washington and Oregon.
  
  
 ## The map:
@@ -178,8 +178,6 @@ map_function(eda_subset)
 
 
 ## Total Pesticide usage: 2016 vs. 2018 vs. 2019
-
- - Adding the <b>mean toxicity</b> of all observations in each state to the map.  
  
  - This plot shows that, based on this dataset, the harvests in Oregon tended to use chemicals that were rated higher by our toxicity scale in comparison to other states.
  
