@@ -65,7 +65,7 @@ chemical$Developmental.or.Reproductive.Toxins[is.na(chemical$Developmental.or.Re
 chemical$Bee.Toxins[is.na(chemical$Bee.Toxins)] <- "unknown"
 
 #Give the toxins variable levels
-chemical$Carcinogen <- factor(chemical$Carcinogen, levels = c("known","probable","possible","unknown"))
+chemical$Carcinogen <- factor(chemical$Carcinogen, levels = c("known","possible","probable","unknown"))
 chemical$Carcinogen <- factor(chemical$Carcinogen, levels = rev(levels(chemical$Carcinogen)))
 
 chemical$Hormone.Disruptor <- factor(chemical$Hormone.Disruptor, levels = c("suspected","unknown"))

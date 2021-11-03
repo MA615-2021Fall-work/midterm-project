@@ -139,7 +139,7 @@ MAKE JUDGEMENTS
   
 ## Pose our project topic
 
- - How the human-harm pesticide usage differ as time passes in the major strawberries producing areas in the US.
+ How the human-harm pesticide usage differ as time passes in the major strawberries producing areas in the US.
 
 </section>
 
@@ -154,7 +154,7 @@ EDA
 </div>
 
 
-## Choose data to plot
+## Choose data for map
 
  - Select chemical types exist in <i><b>Pesticides.csv</i></b>
  
@@ -169,6 +169,8 @@ EDA
     + 2016
     + 2018
     + 2019
+
+## Choose data for plot
 
  - Calculate the frequency of chemical type and add a column to store the values and merge the three dataset by chemical type
  
@@ -236,9 +238,6 @@ human_toxicity_level_function(year3_toxicityhuman_freq) + ggtitle("Pesticide Tox
 
  - After we view all the three plots about the distribution, we conclude that althought the total amount of chemical be used across the 3 years decreased, the propotion of toxicitylevel remains relatively the same. 
  - We can say that even though the amount of chemicals they are treating the strawberries with is decreasing, those that they are using are still known to be toxic to humans.
-
-## Shiny Application
-
 
 
 </section>
