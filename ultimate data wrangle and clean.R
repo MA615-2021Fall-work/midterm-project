@@ -135,6 +135,7 @@ year3_chemicaltype_freq$year <- 2019
 colnames(year3_chemicaltype_freq)[1] <- c("Chemicaltype")
 
 
+
 chemicaltype_freq <- rbind(year1_chemicaltype_freq,year2_chemicaltype_freq,year3_chemicaltype_freq)
 chemicaltype_freq$year <- factor(chemicaltype_freq$year)
 
