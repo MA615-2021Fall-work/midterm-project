@@ -80,8 +80,8 @@ MAKE JUDGEMENTS
 <tr>
 <td style="width: 344px; padding: 3px; border-color: rgb(0, 0, 0);">Carcinogen:</td>
 <td style="width: 151px; padding: 3px; border-color: rgb(0, 0, 0);">unknown</td>
-<td style="width: 156px; padding: 3px; border-color: rgb(0, 0, 0);">possible</td>
-<td style="width: 155px; padding: 3px; border-color: rgb(0, 0, 0);">probable</td>
+<td style="width: 156px; padding: 3px; border-color: rgb(0, 0, 0);">probable</td>
+<td style="width: 155px; padding: 3px; border-color: rgb(0, 0, 0);">possible</td>
 <td style="padding: 3px; border-color: rgb(0, 0, 0);">known</td>
 </tr>
 <tr>
