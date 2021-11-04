@@ -119,4 +119,46 @@ human_toxicity_level_function(year2_toxicityhuman_freq) + ggtitle("Pesticide Tox
 human_toxicity_level_function(year3_toxicityhuman_freq) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2019")
 ```
 
-After we view all the three plots about the distribution, we conclude that althought the total amount of chemical be used across the 3 years decreased, the propotion of toxicitylevel remains relatively the same. We can say that even though the amount of chemicals they are treating the strawberries with is decreasing, those that they are using are still known to be toxic to humans. 
+__Conclusion:__
+
+After we view all the three plots about the distribution, we conclude that althought the total amount of chemical be used across the 3 years decreased, the propotion of toxicitylevel remains relatively the same. 
+
+We can say that even though the amount of chemicals they are treating the strawberries with is decreasing, those that they are using are still known to be toxic to humans. 
+
+However, we believe that there exist a major difference, but with some limiations, we can not go deeper with our project at this point. 
+
+We will display some limitations of this project below.
+
+
+__limitations:__
+
+We draw the plot including toxicity level 4 for human-harm pesticide which contain all 4 missing value for 4 types of human toxins.
+
+```{r,warning=FALSE,fig.width= 10, fig.height= 6}
+human_toxicity_level_function(year1_toxicityhuman_freq_full) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2016")
+```
+
+
+```{r,warning=FALSE,fig.width= 10, fig.height= 6}
+human_toxicity_level_function(year2_toxicityhuman_freq_full) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2018")
+```
+
+
+```{r,warning=FALSE,fig.width= 10, fig.height= 6}
+human_toxicity_level_function(year3_toxicityhuman_freq_full) + ggtitle("Pesticide Toxicitylevelhuman Frequency 2019")
+```
+From the three plots, we can see the biggest limitation for our project is that the original strawberry dataset contains too many missing value. With this major limitation, the useful sample size shrank from over 3000 observations to only around 50 observations, even among the 50 observations, there are around 60% of them are transfered from missing values. This is a serious obstacle that we encountered.
+
+```{r,warning=FALSE,fig.width= 10, fig.height= 6}
+table(chemical$measurement)
+table(strawbwhole$State)
+table(strawbwhole$Domain)
+table(strawbwhole$Year)
+```
+
+Another limitation is about the measurement, from the table, we can see there are 5 different measurement scale in the original strawberry dataset and each has the same number of observations. This limitation shrink our sample size for studying our topic as well for we can only filter one measurement out to continue our study.
+
+Another limitation of the original strawberry data set is that the distribution of data is not well-distributed. Caused some difficulties when we study our topic.
+
+
+

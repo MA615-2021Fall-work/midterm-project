@@ -159,3 +159,25 @@ colnames(year3_toxicityhuman_freq)[1] <- c("Toxicityhumenlevel")
 year3_toxicityhuman_freq <-year3_toxicityhuman_freq %>% mutate(FreqPerc = Freq/sum(Freq))
 year3_toxicityhuman_freq$FreqPerc <- round(year3_toxicityhuman_freq$FreqPerc, digits = 2)
 
+#Dataset for limitation:
+year1_toxicityhuman_freq_full <- data.frame(table(year1$toxicitylevelhuman))
+colnames(year1_toxicityhuman_freq_full)[1] <- c("Toxicityhumenlevel")
+year1_toxicityhuman_freq_full <-year1_toxicityhuman_freq_full %>% mutate(FreqPerc = Freq/sum(Freq))
+year1_toxicityhuman_freq_full$FreqPerc <- round(year1_toxicityhuman_freq_full$FreqPerc, digits = 3)
+
+
+year2_toxicityhuman_freq_full <- data.frame(table(year2$toxicitylevelhuman))
+colnames(year2_toxicityhuman_freq_full)[1] <- c("Toxicityhumenlevel")
+year2_toxicityhuman_freq_full <-year2_toxicityhuman_freq_full %>% mutate(FreqPerc = Freq/sum(Freq))
+year2_toxicityhuman_freq_full$FreqPerc <- round(year2_toxicityhuman_freq_full$FreqPerc, digits = 3)
+
+
+year3_toxicityhuman_freq_full <- data.frame(table(year3$toxicitylevelhuman))
+colnames(year3_toxicityhuman_freq_full)[1] <- c("Toxicityhumenlevel")
+year3_toxicityhuman_freq_full <-year3_toxicityhuman_freq_full %>% mutate(FreqPerc = Freq/sum(Freq))
+year3_toxicityhuman_freq_full$FreqPerc <- round(year3_toxicityhuman_freq_full$FreqPerc, digits = 3)
+
+
+
+
+
